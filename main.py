@@ -23,10 +23,10 @@ class StackLayoutPuzzles(StackLayout):
         for i in range(1, 21):
             size = dp(50)
             b = Button(text="Knop " + str(i), size_hint=(None, None), size=(size * 4, size))
-            b.bind(on_press=self.klik)
+            b.bind(on_press=self.pressButton)
             self.add_widget(b)
 
-    def klik(self, *args, **kwargs):
+    def pressButton(self, *args, **kwargs):
         #print(args)
         print(args[0].text)
 
