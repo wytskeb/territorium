@@ -22,24 +22,52 @@ class StackLayoutPuzzles(StackLayout):
         for i in range(0, 20):
             # size = dp(100) + i*10
             size = dp(50)
-            b = Button(text="Knop " + str(i+1), size_hint=(None, None), size=(size * 4, size), on_press=self.boe())
+            b = Button(text="Knop " + str(i+1), size_hint=(None, None), size=(size * 4, size))
+
+            b.bind(on_press=self.on_event)
+            b.bind(state=self.on_property)
+            b.bind(on_press=lambda x: self.on_event(None))
+            b.bind(on_press=self.on_anything)
+            b.bind(on_press=self.on_anything)
+            b.bind(on_release=self.boe)
+            b.fbind('on_press', self.on_event)
+            b.fbind('state', self.on_property)
+            print("knop = ", i)
+            b.fbind('on_press', self.on_event_with_args, 'right',
+                       tree='birch', food='text')
+            b.fbind('on_press', self.on_anything)
+
+
             self.add_widget(b)
 
 
-    def boe(self):
-        print("Boe")
+    def boe(self, obj):
+        print("6 Boe", str(obj))
+        print("_____")
 
+    def on_event(self, obj):
+        print("1 en 3 Typical event from", obj)
 
-    #def on_event(self, obj):
-    #    print("Typical event from", obj)
+    def on_property(self, obj, value):
+        print("2 Typical property change from", obj, "to", value)
 
-    #def on_property(self, obj, value):
-    #    print("Typical property change from", obj, "to", value)
+    def on_anything(self, *args, **kwargs):
+        print('4 en 5 The flexible function has *args of', str(args),
+              "and **kwargs of", str(kwargs))
 
-    #def on_anything(self, *args, **kwargs):
-    #    print('The flexible function has *args of', str(args),
-    #          "and **kwargs of", str(kwargs))
+    def on_event(self, obj):
+        print("Typical event from", obj)
 
+    def on_event_with_args(self, side, obj, tree=None, food=None):
+        print("Event with args", obj, side, tree, food)
+
+    def on_property(self, obj, value):
+        print("Typical property change from", obj, "to", value)
+
+    def on_anything(self, *args, **kwargs):
+        print('The flexible function has *args of', str(args),
+              "and **kwargs of", str(kwargs))
+        return True
 
 
 class VolgordePuzzlesWindow(Screen):
