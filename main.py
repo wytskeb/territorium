@@ -14,60 +14,26 @@ from kivy.uix.stacklayout import StackLayout
 Config.set('graphics', 'width', '400')
 Config.set('graphics', 'height', '900')
 
+
+class Knopje(Button):
+    pass
+
+
 class StackLayoutPuzzles(StackLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # self.orientation = "lr-bt"
-        for i in range(0, 20):
-            # size = dp(100) + i*10
+        buttons = {}
+        for i in range(1, 21):
             size = dp(50)
-            b = Button(text="Knop " + str(i+1), size_hint=(None, None), size=(size * 4, size))
+            buttons[i] = Knopje(text="Knop [size=40]" + str(i) + "[/size]", markup=True, size_hint=(None, None), size=(size * 4, size))
+            buttons[i].bind(on_press=lambda x: self.klik)
+            self.add_widget(buttons[i])
 
-            b.bind(on_press=self.on_event)
-            b.bind(state=self.on_property)
-            b.bind(on_press=lambda x: self.on_event(None))
-            b.bind(on_press=self.on_anything)
-            b.bind(on_press=self.on_anything)
-            b.bind(on_release=self.boe)
-            b.fbind('on_press', self.on_event)
-            b.fbind('state', self.on_property)
-            print("knop = ", i)
-            b.fbind('on_press', self.on_event_with_args, 'right',
-                       tree='birch', food='text')
-            b.fbind('on_press', self.on_anything)
-
-
-            self.add_widget(b)
-
-
-    def boe(self, obj):
-        print("6 Boe", str(obj))
-        print("_____")
-
-    def on_event(self, obj):
-        print("1 en 3 Typical event from", obj)
-
-    def on_property(self, obj, value):
-        print("2 Typical property change from", obj, "to", value)
-
-    def on_anything(self, *args, **kwargs):
-        print('4 en 5 The flexible function has *args of', str(args),
-              "and **kwargs of", str(kwargs))
-
-    def on_event(self, obj):
-        print("Typical event from", obj)
-
-    def on_event_with_args(self, side, obj, tree=None, food=None):
-        print("Event with args", obj, side, tree, food)
-
-    def on_property(self, obj, value):
-        print("Typical property change from", obj, "to", value)
-
-    def on_anything(self, *args, **kwargs):
-        print('The flexible function has *args of', str(args),
-              "and **kwargs of", str(kwargs))
-        return True
+    def klik(self, *args, **kwargs):
+        print("args:   ", args)
+        print("akwrgs: ", kwargs)
 
 
 class VolgordePuzzlesWindow(Screen):
