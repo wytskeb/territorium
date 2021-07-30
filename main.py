@@ -27,7 +27,8 @@ class StackLayoutPuzzles(StackLayout):
             self.add_widget(b)
 
     def klik(self, *args, **kwargs):
-        print("args:   ", args[0].text)
+        #print(args)
+        print(args[0].text)
 
 
 class VolgordePuzzlesWindow(Screen):
