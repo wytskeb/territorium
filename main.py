@@ -15,25 +15,19 @@ Config.set('graphics', 'width', '400')
 Config.set('graphics', 'height', '900')
 
 
-class Knopje(Button):
-    pass
-
-
 class StackLayoutPuzzles(StackLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # self.orientation = "lr-bt"
-        buttons = {}
         for i in range(1, 21):
             size = dp(50)
-            buttons[i] = Knopje(text="Knop [size=40]" + str(i) + "[/size]", markup=True, size_hint=(None, None), size=(size * 4, size))
-            buttons[i].bind(on_press=lambda x: self.klik)
-            self.add_widget(buttons[i])
+            b = Button(text="Knop " + str(i), size_hint=(None, None), size=(size * 4, size))
+            b.bind(on_press=self.klik)
+            self.add_widget(b)
 
     def klik(self, *args, **kwargs):
-        print("args:   ", args)
-        print("akwrgs: ", kwargs)
+        print("args:   ", args[0].text)
 
 
 class VolgordePuzzlesWindow(Screen):
