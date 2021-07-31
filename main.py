@@ -21,17 +21,16 @@ class StackLayoutPuzzles(StackLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # self.orientation = "lr-bt"
-        start_path = '.'  # current directory
+        start_path = './volgorde' # current directory
         for path, dirs, files in os.walk(start_path):
             for filename in files:
+                gamename = filename.split(".")
                 size = dp(50)
-                b = Button(text=filename, size_hint=(None, None), size=(size * 4, size))
+                b = Button(text=gamename[0], size_hint=(None, None), size=(size * 4, size))
                 b.bind(on_press=self.pressButton)
                 self.add_widget(b)
 
     def pressButton(self, *args, **kwargs):
-        #print(args)
         print(args[0].text)
 
 
