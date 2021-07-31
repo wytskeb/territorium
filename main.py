@@ -1,3 +1,5 @@
+import os
+
 from kivy import Config
 from kivy.app import App
 from kivy.lang import Builder
@@ -20,11 +22,13 @@ class StackLayoutPuzzles(StackLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # self.orientation = "lr-bt"
-        for i in range(1, 21):
-            size = dp(50)
-            b = Button(text="Knop " + str(i), size_hint=(None, None), size=(size * 4, size))
-            b.bind(on_press=self.pressButton)
-            self.add_widget(b)
+        start_path = '.'  # current directory
+        for path, dirs, files in os.walk(start_path):
+            for filename in files:
+                size = dp(50)
+                b = Button(text=filename, size_hint=(None, None), size=(size * 4, size))
+                b.bind(on_press=self.pressButton)
+                self.add_widget(b)
 
     def pressButton(self, *args, **kwargs):
         #print(args)
