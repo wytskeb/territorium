@@ -1,3 +1,40 @@
+<SchuifPuzzlesWindow>:
+    name: "schuifpuzzle"
+
+    FloatLayout:
+        size: root.width, root.height/2
+
+        Label:
+            font_size: dp(30)
+            font_name: 'fonts/Eurostile.ttf'
+            text: "blub"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+
+        Label:
+            id: opdrachttekst
+            multiline: True
+            font_size: dp(20)
+            font_name: 'fonts/Eurostile.ttf'
+            text: "... tekst laden ..."
+            size_hint: 0.5, 0.2
+            pos_hint: {"x":0.1, "top":0.75}
+
+        Button:
+            font_size: dp(30)
+            font_name: 'fonts/Eurostile.ttf'
+            # text: root.parent.menu_button_title
+            pos_hint: { "center_x": .5, "center_y": .3}
+            size_hint: .5, .05
+            # on_press: root.parent.on_menu_button_pressed()
+            background_normal: ''
+            background_color: 1, .3, .4, .85
+            text: "Verbum"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.verbum_page_button()
+
+
 <ScrollViewPuzzles@ScrollView>:
     size_hint: (None, None)
 	size: (200, 425)
@@ -16,8 +53,8 @@
 <StackLayoutPuzzles>:
 
 
-<VolgordePuzzlesWindow>:
-    name: "volgorde"
+<VerbumPuzzlesWindow>:
+    name: "verbum"
 
     FloatLayout:
 
@@ -26,7 +63,7 @@
     Label:
         font_size: dp(30)
         font_name: 'fonts/Eurostile.ttf'
-        text: "Volgorde"
+        text: "Verbum"
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "top":1}
 
@@ -39,40 +76,14 @@
         # on_press: root.parent.on_menu_button_pressed()
         background_normal: ''
         background_color: 1, .3, .4, .85
-        text: "Puzzels"
+        text: "Ludere"
         on_release:
             root.manager.transition.direction = "right"
-            root.puzzle_page_button()
+            root.ludere_page_button()
 
-<WereldMenuWindow>:
-    name: "wereld"
 
-    FloatLayout:
-        size: root.width, root.height/2
-
-        Label:
-            font_size: dp(30)
-            font_name: 'fonts/Eurostile.ttf'
-            text: "Wereld"
-            size_hint: 0.8, 0.2
-            pos_hint: {"x":0.1, "top":1}
-
-        Button:
-            font_size: dp(30)
-            font_name: 'fonts/Eurostile.ttf'
-            # text: root.parent.menu_button_title
-            pos_hint: { "center_x": .5, "center_y": .3}
-            size_hint: .5, .05
-            # on_press: root.parent.on_menu_button_pressed()
-            background_normal: ''
-            background_color: 1, .3, .4, .85
-            text: "Hoofdmenu"
-            on_release:
-                root.manager.transition.direction = "right"
-                root.first_page_button()
-
-<PuzzleMenuWindow>:
-    name: "puzzles"
+<LudereMenuWindow>:
+    name: "ludere"
 
     FloatLayout:
         size: root.width, root.height/2
@@ -80,7 +91,7 @@
         Label:
             font_size: dp(30)
             font_name: 'fonts/Eurostile.ttf'
-            text: "Puzzels"
+            text: "Ludere"
             size_hint: 0.8, 0.2
             pos_hint: {"x":0.1, "top":1}
 
@@ -93,10 +104,10 @@
             # on_press: root.parent.on_menu_button_pressed()
             background_normal: ''
             background_color: 1, .3, .4, .85
-            text: "Verbum 1"
+            text: "Verbum"
             on_release:
                 root.manager.transition.direction = "left"
-                root.volgorde_puzzles_button()
+                root.verbum_puzzles_button()
 
         Button:
             font_size: dp(30)
@@ -107,21 +118,21 @@
             # on_press: root.parent.on_menu_button_pressed()
             background_normal: ''
             background_color: 1, .3, .4, .85
-            text: "Hoofdmenu"
+            text: "Domo"
             on_release:
                 root.manager.transition.direction = "right"
-                root.first_page_button()
+                root.domo_page_button()
 
 
-<FirstWindow>:
-    name: "first"
+<DomoWindow>:
+    name: "domo"
 
     FloatLayout:
 
         Label:
             font_size: dp(30)
             font_name: 'fonts/Eurostile.ttf'
-            text: "Hoofdmenu"
+            text: "Domo"
             size_hint: 0.8, 0.2
             pos_hint: {"x":0.1, "top":1}
 
@@ -134,10 +145,10 @@
             # on_press: root.parent.on_menu_button_pressed()
             background_normal: ''
             background_color: 1, .3, .4, .85
-            text: "Puzzels"
+            text: "Ludere"
             on_release:
                 root.manager.transition.direction = "left"
-                root.puzzle_page_button()
+                root.ludere_page_button()
 
         Button:
             font_size: dp(30)
@@ -148,7 +159,35 @@
             # on_press: root.parent.on_menu_button_pressed()
             background_normal: ''
             background_color: 1, .3, .4, .85
-            text: "Wereld"
+            text: "Habitat"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.habitat_page_button()
+
+
+<HabitatMenuWindow>:
+    name: "habitat"
+
+    FloatLayout:
+        size: root.width, root.height/2
+
+        Label:
+            font_size: dp(30)
+            font_name: 'fonts/Eurostile.ttf'
+            text: "Habitat"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+
+        Button:
+            font_size: dp(30)
+            font_name: 'fonts/Eurostile.ttf'
+            # text: root.parent.menu_button_title
+            pos_hint: { "center_x": .5, "center_y": .3}
+            size_hint: .5, .05
+            # on_press: root.parent.on_menu_button_pressed()
+            background_normal: ''
+            background_color: 1, .3, .4, .85
+            text: "Domo"
             on_release:
                 root.manager.transition.direction = "left"
-                root.wereld_page_button()
+                root.domo_page_button()
